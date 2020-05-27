@@ -49,23 +49,28 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES manual_map_build
-#  CATKIN_DEPENDS nav_msgs occupancy_grid roscpp rospy std_msgs
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES manual_map_build
+  CATKIN_DEPENDS nav_msgs roscpp rospy std_msgs
+  DEPENDS system_lib
 )
 
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/manual_map_build.cpp
-# )
+add_library(${PROJECT_NAME}
+  src/ros_map_builder.cpp
+  src/two_value_map.cpp
+)
 
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
 
 # add_executable(${PROJECT_NAME}_node src/manual_map_build_node.cpp)
 
