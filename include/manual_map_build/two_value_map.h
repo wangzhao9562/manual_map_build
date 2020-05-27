@@ -13,9 +13,9 @@
 #include <vector>
 #include <utility>
 
-namespace two_value_map{
-static const unsigned int OCCUPIED = 1;
-static const unsigned int FREE = 0;
+namespace manual_map_build{
+unsigned int OCCUPIED = 1;
+unsigned int FREE = 0;
 
 typedef std::pair<unsigned int, unsigned int> Vertex;
 
@@ -23,8 +23,11 @@ typedef std::pair<unsigned int, unsigned int> Vertex;
  * @brief Map structure with two types of costs: 0 or 1
  */
 class TwoValueMap{
+// typedef std::pair<double, double> Origin; 
+
 public:
     /**
+     * @brief Constructor
      * @param width Map width
      * @param height Map height
      * @param resolution Map resolution
@@ -33,6 +36,16 @@ public:
      */
     TwoValueMap(unsigned int width, unsigned int height, double resolution, const std::vector<Vertex>& ur_vertexes, const std::vector<Vertex>& ll_vertexes);
     
+    /**
+     * @brief Return the cost
+     */
+    inline std::vector<unsigned int> getCosts()const{ return costs_; }
+
+    /**
+     * @brief Return resolution of map
+     */
+    inline double getResolution()const{ return res_; }
+
 private:
     /**
      * @param ur_vertexes Upper right vertexes integration of obstacles
