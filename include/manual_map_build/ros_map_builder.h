@@ -1,7 +1,7 @@
 /*
  * @Author: Zhao Wang
  * @Date: 2020-05-26 15:56:02
- * @LastEditTime: 2020-05-28 13:19:18
+ * @LastEditTime: 2020-05-28 22:10:48
  * @LastEditors: Please set LastEditors
  * @Description: Definition of RosMapBuilder class which transfrom two value map into occupancy grid
  * @FilePath: /manual_map_build/include/manual_map_build/ros_map_builder.h
@@ -59,21 +59,12 @@ private:
         const std::vector<unsigned int>& two_value_cost);
     
     /**
-     * @brief Get index vector of obstacles
-     * @param ur_vertexes Vector of upper right vertexes of obstacle
-     * @param ll_vertexes Vector of lower left vertexes of obstacle
-     * @param return Vector index of all obstacle in map
-     */
-    std::vector<unsigned int> getObsIndex(const std::vector<Vertex>& ur_vertexes, const std::vector<Vertex>& ll_vertexes);
-
-    /**
      * @brief Get minimum distance between all free grids and occupied grids
      * @param cost_vec Cost of two value map
-     * @param obs_vec Index vector of obstacle
      * @param return Minimum distance vector
      */
-    std::vector<double> minObsDist(const std::vector<unsigned int>& cost_vec, const std::vector<unsigned int>& obs_vec);
-
+    std::vector<double> minObsDist(const std::vector<unsigned int>& cost_vec);
+    
     /**
      * @brief Compute minimum distance between grid with input index and occupied grids
      * @param index Index of ordered grid
@@ -92,7 +83,7 @@ private:
     /**
      * @brief Euclidean distance
      */
-    constexpr double distance(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned y2)
+    constexpr double distance(const unsigned int& x1, const unsigned int& y1, const unsigned int& x2, const unsigned& y2)
     {
         return std::sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
@@ -102,6 +93,9 @@ private:
      */ 
     void occGridPub(const nav_msgs::OccupancyGrid& occ_grid);
 
+    template<typename T>
+    void testPrintVec(const std::vector<T>& vec);
+
 private:
     TwoValueMap* tv_map_; // two value map object
 
@@ -110,6 +104,7 @@ private:
 
     double inscribed_dist_, circumscribed_dist_;
     double factor_;
+    double occ_th_, free_th_;
 
     std::string map_frame_; 
     ros::Publisher occ_grid_pub_; // occupancy grid publisher
