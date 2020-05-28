@@ -1,7 +1,7 @@
 /*
  * @Author: Zhao Wang
  * @Date: 2020-05-26 15:56:02
- * @LastEditTime: 2020-05-27 22:53:44
+ * @LastEditTime: 2020-05-28 13:19:18
  * @LastEditors: Please set LastEditors
  * @Description: Definition of RosMapBuilder class which transfrom two value map into occupancy grid
  * @FilePath: /manual_map_build/include/manual_map_build/ros_map_builder.h
@@ -16,11 +16,6 @@
 #include<math.h>
 
 namespace manual_map_build{
-
-unsigned int UNKNOWN = 255;
-unsigned int LETHAL_COST = 254;
-unsigned int INSCRIBED_COST = 253;
-
 /**
  * @brief Build ros type map manually
  */

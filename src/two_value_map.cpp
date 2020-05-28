@@ -1,7 +1,7 @@
 /*
  * @Author: Zhao Wang
  * @Date: 2020-05-22 16:10:36
- * @LastEditTime: 2020-05-27 22:31:01
+ * @LastEditTime: 2020-05-28 13:12:58
  * @LastEditors: Please set LastEditors
  * @Description: Implementation of TwoValueMap
  * @FilePath: /manual_map_build/src/two_value_map.cpp
@@ -12,7 +12,7 @@
 namespace manual_map_build{
     TwoValueMap::TwoValueMap(unsigned int width, unsigned int height, double resolution, 
         const std::vector<Vertex>& ur_vertexes, const std::vector<Vertex>& ll_vertexes) : 
-        w_(width), h_(height), res_(resolution), costs_(w_ * h_, FREE)
+        w_(width), h_(height), res_(resolution), costs_(w_ * h_, FREE_COST)
     {
         // costs_(w_ * h_, FREE); // initialize map costs
         mapBuild(ur_vertexes, ll_vertexes);
@@ -33,7 +33,7 @@ namespace manual_map_build{
                 for(unsigned int col = lower_left.second; col < upper_right.second; ++col)
                 {
                     unsigned int index = col * w_ + row;
-                    costs_.at(index) = OCCUPIED;
+                    costs_.at(index) = OCCUPIED_COST;
                 }
             }
         }

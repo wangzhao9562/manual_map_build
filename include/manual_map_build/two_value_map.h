@@ -10,12 +10,11 @@
 #ifndef TWO_VALUE_MAP_H_
 #define TWO_VALUE_MAP_H_
 
+#include <manual_map_build/costs.h>
 #include <vector>
 #include <utility>
 
 namespace manual_map_build{
-unsigned int OCCUPIED = 1;
-unsigned int FREE = 0;
 
 typedef std::pair<unsigned int, unsigned int> Vertex;
 
